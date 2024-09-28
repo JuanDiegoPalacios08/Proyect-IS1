@@ -18,5 +18,13 @@ public class PublicationsServiceImp implements IPublicationsService{
     public List<PublicationsModel> getAllPublications() {
         return publicationsRespository.findAll();
     }
+
+    @Override
+    public List<PublicationsModel> findAllByTitle(String title) {
+        return publicationsRespository.findAllByTitle(title);
+    }
+
+    
+    
     
 }

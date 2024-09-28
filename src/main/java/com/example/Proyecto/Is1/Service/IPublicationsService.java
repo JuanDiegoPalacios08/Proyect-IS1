@@ -7,4 +7,5 @@ import com.example.Proyecto.Is1.Model.PublicationsModel;
 
 public interface IPublicationsService {
     List<PublicationsModel> getAllPublications ();
+    List<PublicationsModel> findAllByTitle(String title);
 }
