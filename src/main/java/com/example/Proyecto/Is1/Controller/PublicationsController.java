@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -22,4 +23,16 @@ public class PublicationsController {
     public ResponseEntity<List<PublicationsModel>> getAllPublications(){
         return new ResponseEntity<List<PublicationsModel>>(publicationsService.getAllPublications(),HttpStatus.OK);
     }
+
+    // Buscar publicaciones por idCategoria
+    @GetMapping("/title/{title}")
+    public ResponseEntity<List<PublicationsModel>> getPublicationsByTitle(@PathVariable String title) {
+        List<PublicationsModel> publications = publicationsService.findAllByTitle(title);
+        if (publications.isEmpty()) {
+            return ResponseEntity.noContent().build();  // 204 No Content si no hay resultados
+        }
+        return ResponseEntity.ok(publications);
+    }
+    
+   
 }
