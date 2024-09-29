@@ -1,6 +1,7 @@
 package com.example.Proyecto.Is1.Controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -24,7 +25,7 @@ public class PublicationsController {
         return new ResponseEntity<List<PublicationsModel>>(publicationsService.getAllPublications(),HttpStatus.OK);
     }
 
-    // Buscar publicaciones por idCategoria
+    // Buscar publicaciones por Title
     @GetMapping("/title/{title}")
     public ResponseEntity<List<PublicationsModel>> getPublicationsByTitle(@PathVariable String title) {
         List<PublicationsModel> publications = publicationsService.findAllByTitle(title);
@@ -34,5 +35,9 @@ public class PublicationsController {
         return ResponseEntity.ok(publications);
     }
     
-   
+    // Buscar publicacion por Id
+    @GetMapping("{id}")
+    public ResponseEntity<Optional<PublicationsModel>> findById (@PathVariable String id){
+        return new ResponseEntity<Optional<PublicationsModel>>(publicationsService.findPublicationsByid(id),HttpStatus.OK);
+    }
 }
