@@ -1,5 +1,6 @@
 package com.example.Proyecto.Is1.Service;
 
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,9 +15,15 @@ public class PublicationsServiceImp implements IPublicationsService{
     @Autowired
     IPublicationsRepository publicationsRespository;
 
+
     @Override
     public List<PublicationsModel> getAllPublications() {
         return publicationsRespository.findAll();
+    }
+
+    @Override
+    public List<PublicationsModel> findAllByTitle(String title) {
+        return publicationsRespository.findAllByTitle(title);
     }
     
 }
